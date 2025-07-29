@@ -32,6 +32,7 @@ app.get('/api/v1/ping', (req, res) => {
   res.status(200).json({ message: 'API is alive!' });
 });
 
+
 // routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/wallet', authenticateUser, walletRouter);
@@ -43,6 +44,10 @@ const notFoundMiddleware = require('./middleware/not-found');
 // // Middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
+app.get('/', (req, res) => {
+  res.send('wallet api');
+});
 
 
 // const port = process.env.PORT || 3001;
