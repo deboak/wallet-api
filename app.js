@@ -28,6 +28,11 @@ app.use(xss());
 const authRouter = require('./routes/auth');
 const walletRouter = require('./routes/walletRoutes');
 
+app.get('/', (req, res) => {
+  res.send('wallet api');
+});
+
+
 app.get('/api/v1/ping', (req, res) => {
   res.status(200).json({ message: 'API is alive!' });
 });
@@ -45,9 +50,6 @@ const notFoundMiddleware = require('./middleware/not-found');
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-app.get('/', (req, res) => {
-  res.send('wallet api');
-});
 
 
 // const port = process.env.PORT || 3001;
