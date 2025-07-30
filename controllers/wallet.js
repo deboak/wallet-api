@@ -159,6 +159,7 @@ const transferFunds = async (req, res) => {
         transactions: {
          type: "transfer",
          amount,
+         from: sender.email,
          to: recipient.email,
          date: new Date()
         }
