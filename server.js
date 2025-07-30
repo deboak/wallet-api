@@ -1,6 +1,19 @@
 const app = require('./app');
-const PORT = process.env.PORT || 3001;
+const connectDB = require('./db/connect');
+const port = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}...`);
-})
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI);
+        console.log('connected to MongoDB');
+        
+        app.listen(port, () => {
+            console.log(`Server is listening on port ${port}...`);
+        })
+    } catch (error) {
+        console.log('failed to connect to MongoDB:', error);
+        process.exit(1); 
+    }
+}
+
+start();
